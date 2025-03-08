@@ -2,7 +2,7 @@ function ProductPage() {
   
     return (
       <>
-  sgagasfasfa
+        <h1>Hello There</h1>
       </>
     )
   }

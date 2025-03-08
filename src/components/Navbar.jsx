@@ -6,7 +6,7 @@ function NavBar() {
     return (
       <>
         <header>
-          <nav className="flex items-center justify-between flex-nowrap">
+          <nav className="flex items-center justify-between">
             <ul className="flex justify-between gap-4 ml-4">
               <li>
                 <Link to={"/"}>Home</Link>
