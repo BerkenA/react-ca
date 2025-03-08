@@ -2,7 +2,9 @@ function Footer() {
   
     return (
       <>
-        h
+        <footer>
+          Copyright @ Online Shop. 2025
+        </footer>
       </>
     )
   }
