@@ -6,18 +6,18 @@ function NavBar() {
     return (
       <>
         <header>
-          <nav>
-            <ul>
+          <nav className="flex items-center justify-between flex-nowrap">
+            <ul className="flex justify-between gap-4 ml-4">
               <li>
-                <Link to="/">Home</Link>
+                <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <Link to={"/contact"}>Contact</Link>
               </li>
             </ul>
-            <ul>
+            <ul className="mr-4">
               <li>
-                  <Link to="/shoppingcart"><FaShoppingCart/></Link>
+                  <Link to={"/shoppingcart"}><FaShoppingCart/></Link>
               </li>
             </ul>
           </nav>

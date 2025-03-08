@@ -13,8 +13,8 @@ import ShoppingCart from './components/ShoppingCart'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Layout/>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/product" element={<ProductPage/>}/>
@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/contact" element={<ContactPage/>}/>
           <Route path="/shoppingcart" element={<ShoppingCart/>}/>
         </Routes>
-      </BrowserRouter>
-    <Layout/>
+      </Layout>
+    </BrowserRouter>
   </StrictMode>,
 )

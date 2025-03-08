@@ -12,7 +12,7 @@ function App() {
   return (
     <StrictMode>
       <BrowserRouter>
-        <Layout>
+        <Layout className="flex flex-col">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/product" element={<ProductPage />} />
