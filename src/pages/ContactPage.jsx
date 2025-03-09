@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 
 function ContactPage() {
+  /* 
   useEffect(() => {
     document.title = "Contact Page"
   })
@@ -14,11 +15,12 @@ function ContactPage() {
     e.preventDefault()
     console.log({name, subject, email, body})
   }
+    */
 
 
     return (
       <>
-        <h1>HELLO I AM THE CONTACT PAGE</h1>
+        <h1>Hello Bitch</h1>
       </>
     )
   }
