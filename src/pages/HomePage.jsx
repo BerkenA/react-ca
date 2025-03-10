@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "../components/SearchBar";
 
 function HomePage() {
-  const [url, setUrl] = useState("https://v2.api.noroff.dev/online-shop");
+  const url = "https://v2.api.noroff.dev/online-shop";
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -33,8 +34,11 @@ function HomePage() {
 
   return (
     <>
-      <h1 className="text-lg">Online-Shop</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <h1 className="text-lg flex justify-center font-bold p-4">Online-Shop</h1>
+
+      <SearchBar products={data} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item) => (
             <div key={item.id} className="border p-4 rounded-lg bg-blue-100">
@@ -47,8 +51,8 @@ function HomePage() {
               <p className="text-lg">{item.description}</p>
 
               <p className="text-lg font-bold">
-                {item.discountedPrice && item.discountedPrice < item.price ? (
-                  <span className="line-through text-gray-500">
+                {item.discountedPrice < item.price ? (
+                  <span className="line-through text-red-500 ">
                     {item.price} $
                   </span>
                 ) : (
@@ -56,22 +60,22 @@ function HomePage() {
                 )}
               </p>
 
-              {item.discountedPrice && item.discountedPrice < item.price && (
-                <p className="text-red-500 font-semibold">
+              {item.discountedPrice < item.price && (
+                <p className="text-black font-bold">
                   Discounted Price: {item.discountedPrice} $
                 </p>
               )}
 
               <button
                 onClick={() => handleClick(item.id)}
-                className="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer"
               >
                 View Product
               </button>
             </div>
           ))
         ) : (
-          <p>No data available or incorrect data format</p>
+          <p>Loading...</p>
         )}
       </div>
     </>
