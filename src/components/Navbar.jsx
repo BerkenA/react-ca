@@ -11,7 +11,7 @@ function NavBar() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between border p-4 sticky">
+      <nav className="flex items-center justify-between sticky border p-4">
         <ul className="flex justify-between gap-4 ml-4">
           <li className="text-2xl hover:text-blue-500">
             <Link to={"/"}>Home</Link>
