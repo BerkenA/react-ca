@@ -4,7 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 import "./index.css";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
+import App from "./App";
 import ProductPage from "./pages/ProductPage";
 import CheckOutPage from "./pages/CheckoutPage";
 import CheckOutSuccesPage from "./pages/CheckoutSuccesPage";
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <HomePage />,
+        element: <App />,
       },
       {
         path: "/product/:id",

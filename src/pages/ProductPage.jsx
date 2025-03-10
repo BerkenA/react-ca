@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useCartStore from "../components/Cart";
 
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const addToCart = useCartStore((state) => state.addToCart)
 
   useEffect(() => {
     async function fetchProduct() {
@@ -25,6 +27,12 @@ function ProductPage() {
   if (!product) {
     return <p className="text-center text-lg">Loading product...</p>;
   }
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+    }
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-6 h-">
@@ -53,7 +61,7 @@ function ProductPage() {
           </p>
         )}
 
-        <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer">
+        <button onClick={handleAddToCart} className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer">
           Add to Cart
         </button>
       </div>
