@@ -1,81 +1,127 @@
 import { useState } from "react";
 
 function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [fullName, setFullName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [email, setEmail] = useState("");
+  const [body, setBody] = useState("");
+  const [errors, setErrors] = useState({
     fullName: "",
     subject: "",
     email: "",
     body: "",
   });
-  const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);
 
   const validateForm = () => {
-    const newErrors = {};
-    const { fullName, subject, email, body } = formData;
-
-    newErrors.fullName =
-      fullName.length < 3 ? "Full name must be at least 3 characters." : "";
-    newErrors.subject =
-      subject.length < 3 ? "Subject must be at least 3 characters." : "";
-    newErrors.email = !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
-      email
-    )
-      ? "Please enter a valid email address."
-      : "";
-    newErrors.body =
-      body.length < 3 ? "Body must be at least 3 characters." : "";
+    const newErrors = {
+      fullName: fullName.length < 3 ? "Full name must be at least 3 characters." : "",
+      subject: subject.length < 3 ? "Subject must be at least 3 characters." : "",
+      email: !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+        ? "Please enter a valid email address."
+        : "",
+      body: body.length < 3 ? "Body must be at least 3 characters." : "",
+    };
 
     setErrors(newErrors);
-    setIsValid(!Object.values(newErrors).some((err) => err));
+
+    setIsValid(
+      fullName.length >= 3 &&
+        subject.length >= 3 &&
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email) &&
+        body.length >= 3
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     validateForm();
     if (isValid) {
+      const formData = {
+        fullName,
+        subject,
+        email,
+        body,
+      };
       console.log(formData);
-      setFormData({ fullName: "", subject: "", email: "", body: "" });
-    }
-  };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+      setFullName("");
+      setSubject("");
+      setEmail("");
+      setBody("");
+    }
   };
 
   return (
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-2xl font-bold text-center mb-4">Contact Us</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {["Name", "Subject", "Email", "Body"].map((field) => (
-          <div key={field}>
-            <label htmlFor={field} className="block text-lg font-medium mb-2">
-              {field.replace(/([A-Z])/g, " $1")}
-            </label>
-            {field === "Body" ? (
-              <textarea
-                id={field}
-                name={field}
-                value={formData[field]}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            ) : (
-              <input
-                type={field === "email" ? "email" : "text"}
-                id={field}
-                name={field}
-                value={formData[field]}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-              />
-            )}
-            {errors[field] && (
-              <p className="text-red-500 text-sm mt-1">{errors[field]}</p>
-            )}
-          </div>
-        ))}
+        <div>
+          <label htmlFor="fullName" className="block text-lg font-medium mb-2">
+            Full Name
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+          {errors.fullName && (
+            <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="subject" className="block text-lg font-medium mb-2">
+            Subject
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+          {errors.subject && (
+            <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="email" className="block text-lg font-medium mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="body" className="block text-lg font-medium mb-2">
+            Body
+          </label>
+          <textarea
+            id="body"
+            name="body"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded"
+          />
+          {errors.body && (
+            <p className="text-red-500 text-sm mt-1">{errors.body}</p>
+          )}
+        </div>
 
         <button
           type="submit"
