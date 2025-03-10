@@ -9,7 +9,6 @@ import ProductPage from "./pages/ProductPage";
 import CheckOutPage from "./pages/CheckoutPage";
 import CheckOutSuccesPage from "./pages/CheckoutSuccesPage";
 import ContactPage from "./pages/ContactPage";
-import ShoppingCart from './components/ShoppingCart'
 
 const router = createBrowserRouter([
   {
@@ -22,23 +21,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/product/:id",
-        element: <ProductPage />, 
+        element: <ProductPage />,
       },
       {
         path: "/checkout",
-        element: <CheckOutPage />,  
+        element: <CheckOutPage />,
       },
       {
         path: "/checkoutsucces",
-        element: <CheckOutSuccesPage />, 
+        element: <CheckOutSuccesPage />,
       },
       {
         path: "/contact",
-        element: <ContactPage />, 
-      },
-      {
-        path: "/shoppingcart",
-        element: <ShoppingCart />, 
+        element: <ContactPage />,
       },
     ],
   },
@@ -49,5 +44,3 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
-
-

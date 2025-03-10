@@ -16,9 +16,7 @@ function App() {
         if (Array.isArray(fetchedData.data)) {
           setData(fetchedData.data);
         } else {
-          console.error(
-            "Fetched data is not an Array"
-          );
+          console.error("Fetched data is not an Array");
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -61,9 +59,7 @@ function App() {
               </p>
 
               {item.discountedPrice < item.price && (
-                <p className="text-black font-bold">
-                  Discounted Price: {item.discountedPrice} $
-                </p>
+                <p className="text-black font-bold">{item.discountedPrice} $</p>
               )}
 
               <button
@@ -83,6 +79,3 @@ function App() {
 }
 
 export default App;
-
-
-
